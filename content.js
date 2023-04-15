@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-12-06 17:13:35
  * @LastEditors: xzz
- * @LastEditTime: 2023-03-28 08:57:06
+ * @LastEditTime: 2023-04-15 10:25:37
  */
 // 'use strict'默认启用
 import { createApp } from 'vue'
@@ -13,9 +13,11 @@ const pinia = createPinia()
 import{ contentApi as API} from './src/api/contentApi/index'
 window.API = API
 
-// {recconnectTime = 6, port = 7777, message={type: 'compiler'}}
-const { createWsConnect } = require('ws-reload-plugin')
-DEBUG ? createWsConnect({}) : ''
+//   开发模式时  的  自动刷新
+if(DEBUG){   // 开发模式时为真   //   生产模式为假
+  const { createWsConnect } = require('ws-reload-plugin')
+  createWsConnect({})
+}
 // //------------------------------------------------------
 
 //引入自定义的所有css入口文件
@@ -45,9 +47,10 @@ function createEntry(myapp,id){
 }
 
 
-// create app instance
-createEntry(appjd, 'marketjd')
 
 //-----------通过inject渠道------注入js到任意页面----且共享浏览器window--------------
 API.injectFile()
 
+
+// create app instance
+createEntry(appjd, 'marketjd')

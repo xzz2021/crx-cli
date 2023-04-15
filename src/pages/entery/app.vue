@@ -1,21 +1,24 @@
 <!--
  * @Date: 2022-12-06 17:13:35
  * @LastEditors: xzz
- * @LastEditTime: 2023-04-11 14:05:28
+ * @LastEditTime: 2023-04-15 10:34:04
 -->
 <template>
 <div class="test">
   
   <div>
 
-   900000000000000
+   hello world!!!
   </div> 
+  <br />
 
   <!-- components目录下的子组件  直接使用文件名称 -->
   <!-- 且此目录下的组件会自动import引入   无需main文件以全局组件形式挂载-->
   <testDemo />
+  <br />
   <!-- 带子目录的组件需拼接目录名并驼峰形式拼接-->
   <testdirTestDemo />  
+  <br />
 </div>
 
 
@@ -28,13 +31,20 @@
 //注入函数到inject里,共享浏览器调试面板的顶层window
 
 const test = async() => {
+  
   function ff(){
-    window.xzz$ = $
-    return  window.pageConfig.product.imageList
+    return  '666'
   }
+  
   let res =  await API.injectFn(ff)
   console.log("🚀 ~ file: app.vue:206 ~ test1 ~ res:", res)
 }
+onMounted(() => {
+  setTimeout(() => {
+    test()
+  }, 1000);
+  console.log("🚀 222222222=============")
+})
 
 
 </script>
